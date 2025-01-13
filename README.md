@@ -20,6 +20,8 @@ Building static files into `dist/`:
 npm run build
 ```
 
+Copy manually to `docs/` and perform git push to deploy,
+
 # License
 
 [GNU General Public License Version 3](LICENSE.md)
