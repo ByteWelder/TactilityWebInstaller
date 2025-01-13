@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Web install tool for the Tactility operating system">
+    <meta name="author" content="ByteWelder / Ken Van Hoeylandt">
+    <link rel="icon" href="/assets/images/favicon.svg">
+    <title>Tactility Web Installer</title>
+</head>
+
+<body>
+
+<header>
+  <nav class="navbar mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand mb-0 h1"><img id="NavbarImage">&nbsp;Tactility Web Installer</a>
+    </div>
+  </nav>
+</header>
+
+<main role="main">
+  <section id="MainInstaller">
+    <div class="container text-center">
+      <div class="row justify-content-md-center">
+        	<div class="device-selector invisible" id="device-menu">
+	        <select id="device">
+		        <option value="null">Select Device</option>
+		        <option value="lilygo-tdeck">Lilygo T-Deck</option>
+		        <option value="m5stack-core2">M5Stack Core2</option>
+		        <option value="m5stack-cores3">M5Stack CoreS3</option>
+		        <option value="yellow-board">Yellow Board 2432S024C</option>
+	        </select>
+	      </div>
+      </div>
+
+      <esp-web-install-button>
+        <button id="installActualButton" class="btn btn-primary" slot="activate" style="margin-top: 20pt;">Install Now</button>
+        <span slot="unsupported" class="lead py-lg-1">Ah snap, your browser is not supported.</span>
+        <span slot="not-allowed">Ah snap, you are not allowed to use this on HTTP.</span>
+      </esp-web-install-button>
+      
+      <div class="container text-center" style="margin-top:20pt;">
+        Need help? <a href="https://tactility.one/#/support" target="_blank">Get support</a>! 
+      </div>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>
