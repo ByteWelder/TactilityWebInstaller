@@ -24,7 +24,7 @@
     <div class="container text-center">
       <div class="row justify-content-md-center">
         	<div class="device-selector invisible" id="device-menu">
-	        <select id="device">
+	        <select id="device" class="form-select">
 		        <option value="null">Select Device</option>
 		        <option value="lilygo-tdeck">Lilygo T-Deck</option>
 		        <option value="m5stack-core2">M5Stack Core2</option>
@@ -32,6 +32,7 @@
 		        <option value="yellow-board">Yellow Board 2432S024C</option>
 	        </select>
 	      </div>
+	      <div class="p-4 m-4 invisible alert alert-secondary" id="DeviceInfo"/>
       </div>
 
       <esp-web-install-button>

@@ -23,8 +23,18 @@ function updateSelectionBoxVisibility() {
     if (selectedDevice != "null"){
         setManifest(selectedDevice);
         installActualButton.removeClass('invisible');
-    }	else {
+        
+        if (selectedDevice == 'lilygo-tdeck') {
+            $('#DeviceInfo').removeClass('invisible');
+            $('#DeviceInfo').html('Press the trackball and then the reset button at the same time at the same time.<br/>\
+              When this website reports that flashing is finished, you likely have to press the reset button.');
+        } else {
+            $('#DeviceInfo').addClass('invisible');
+        }
+        
+    } else {
         installActualButton.addClass('invisible');
+
     }
 }
 
