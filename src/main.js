@@ -26,7 +26,7 @@ function updateSelectionBoxVisibility() {
         
         if (selectedDevice == 'lilygo-tdeck') {
             $('#DeviceInfo').removeClass('invisible');
-            $('#DeviceInfo').html('Press the trackball and then the reset button at the same time at the same time.<br/>\
+            $('#DeviceInfo').html('Press the trackball and then the reset button at the same time, then let go of the reset button, then the trackball.<br/>\
               When this website reports that flashing is finished, you likely have to press the reset button.');
         } else {
             $('#DeviceInfo').addClass('invisible');
