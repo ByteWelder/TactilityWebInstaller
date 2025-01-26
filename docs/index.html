@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" data-bs-theme="dark">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Web install tool for the Tactility operating system">
@@ -12,40 +12,45 @@
 <body>
 
 <header>
-  <nav class="navbar mb-4">
-    <div class="container-fluid">
-      <a class="navbar-brand mb-0 h1"><img id="NavbarImage">&nbsp;Tactility Web Installer</a>
-    </div>
-  </nav>
+    <nav class="navbar mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand mb-0 h1"><img alt="logo" id="NavbarImage"/>&nbsp;Tactility Web Installer</a>
+        </div>
+    </nav>
 </header>
 
 <main role="main">
-  <section id="MainInstaller">
-    <div class="container text-center">
-      <div class="row justify-content-md-center">
-        	<div class="device-selector invisible" id="device-menu">
-	        <select id="device" class="form-select">
-		        <option value="null">Select Device</option>
-		        <option value="lilygo-tdeck">Lilygo T-Deck</option>
-		        <option value="m5stack-core2">M5Stack Core2</option>
-		        <option value="m5stack-cores3">M5Stack CoreS3</option>
-		        <option value="yellow-board">Yellow Board 2432S024C</option>
-	        </select>
-	      </div>
-	      <div class="p-4 m-4 invisible alert alert-secondary" id="DeviceInfo"/>
-      </div>
+    <section id="MainInstaller">
+        <div class="container text-center">
+            <div class="row justify-content-md-center">
+                <div class="h4 m-2">Tactility <span id="TactilityVersion" style="display: contents;"></span></div>
+                <div class="device-selector invisible" id="device-menu">
+                    <select id="device" class="form-select">
+                        <option value="null">Select Device</option>
+                        <option value="lilygo-tdeck">Lilygo T-Deck</option>
+                        <option value="m5stack-core2">M5Stack Core2</option>
+                        <option value="m5stack-cores3">M5Stack CoreS3</option>
+                        <option value="cyd-2432S024c">CYD 2432S024C</option>
+                        <option value="unphone">unPhone</option>
+                    </select>
+                </div>
+                <div class="p-4 m-4 invisible alert alert-secondary" id="DeviceInfo"></div>
+            </div>
 
-      <esp-web-install-button>
-        <button id="installActualButton" class="btn btn-primary" slot="activate" style="margin-top: 20pt;">Install Now</button>
-        <span slot="unsupported" class="lead py-lg-1">Ah snap, your browser is not supported.</span>
-        <span slot="not-allowed">Ah snap, you are not allowed to use this on HTTP.</span>
-      </esp-web-install-button>
-      
-      <div class="container text-center" style="margin-top:20pt;">
-        Need help? Check <a href="https://tactility.one/#/installing">alternative install methods</a> or <a href="https://tactility.one/#/support" target="_blank">get support</a>! 
-      </div>
-    </div>
-  </section>
+            <esp-web-install-button>
+                <button id="installActualButton" class="btn btn-primary" slot="activate" style="margin-top: 20pt;">
+                    Install Now
+                </button>
+                <span slot="unsupported" class="lead py-lg-1">Ah snap, your browser is not supported.</span>
+                <span slot="not-allowed">Ah snap, you are not allowed to use this on HTTP.</span>
+            </esp-web-install-button>
+
+            <div class="container text-center" style="margin-top:20pt;">
+                Need help? Check <a href="https://tactility.one/#/installing">alternative install methods</a> or <a
+                    href="https://tactility.one/#/support" target="_blank">get support</a>!
+            </div>
+        </div>
+    </section>
 </main>
 
 </body>

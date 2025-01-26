@@ -1,0 +1,33 @@
+{
+  "name": "Tactilty for CYD 2432S024C",
+  "version": "0.1.0",
+  "new_install_prompt_erase": true,
+  "funding_url": "https://github.com/sponsors/ByteWelder",
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        {
+          "path": "Tactility-cyd-2432S024c/Binaries/bootloader/bootloader.bin",
+          "offset": 4096
+        },
+        {
+          "path": "Tactility-cyd-2432S024c/Binaries/Tactility.bin",
+          "offset": 65536
+        },
+        {
+          "path": "Tactility-cyd-2432S024c/Binaries/partition_table/partition-table.bin",
+          "offset": 32768
+        },
+        {
+          "path": "Tactility-cyd-2432S024c/Binaries/system.bin",
+          "offset": 3211264
+        },
+        {
+          "path": "Tactility-cyd-2432S024c/Binaries/data.bin",
+          "offset": 3473408
+        }
+      ]
+    }
+  ]
+}
