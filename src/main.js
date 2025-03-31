@@ -9,7 +9,7 @@ import '../assets/images/favicon.svg';
 
 NavbarImage.src = toolbarLogo;
 
-let tactilityVersion = 'v0.2.0'
+let tactilityVersion = 'v0.3.0'
 
 function setManifest(device) {
     const installer = document.querySelector('esp-web-install-button');
