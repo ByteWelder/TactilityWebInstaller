@@ -1,0 +1,33 @@
+{
+  "name": "Tactilty for Lilygo T-Deck",
+  "version": "0.3.0",
+  "new_install_prompt_erase": true,
+  "funding_url": "https://github.com/sponsors/ByteWelder",
+  "builds": [
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        {
+          "path": "Tactility-lilygo-tdeck/Binaries/bootloader/bootloader.bin",
+          "offset": 0
+        },
+        {
+          "path": "Tactility-lilygo-tdeck/Binaries/Tactility.bin",
+          "offset": 65536
+        },
+        {
+          "path": "Tactility-lilygo-tdeck/Binaries/partition_table/partition-table.bin",
+          "offset": 32768
+        },
+        {
+          "path": "Tactility-lilygo-tdeck/Binaries/system.bin",
+          "offset": 3211264
+        },
+        {
+          "path": "Tactility-lilygo-tdeck/Binaries/data.bin",
+          "offset": 3473408
+        }
+      ]
+    }
+  ]
+}
