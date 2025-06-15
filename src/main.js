@@ -9,25 +9,23 @@ import '../assets/images/favicon.svg';
 
 NavbarImage.src = toolbarLogo;
 
-let tactilityVersion = 'v0.3.0'
-
-function setManifest(device) {
+function setManifest(device, version) {
     const installer = document.querySelector('esp-web-install-button');
-    installer.manifest = `rom/` + tactilityVersion + `/${device}.json`
+    installer.manifest = `rom/${device}/${version}/manifest.json`
     console.log("Device updated")
 }
 
 function updateSelectionBoxVisibility() {
     const deviceSelect = $('#device');
-    const installActualButton = $('#installActualButton');
     const selectedDevice = deviceSelect[0].value;
-
-    $('#TactilityVersion').html(tactilityVersion);
+    const versionSelect = $('#version');
+    const versionMenu = $('#version-menu');
+    const selectedVersion = versionSelect[0].value;
+    const installActualButton = $('#installActualButton');
 
     console.log(`Selected Device: ${selectedDevice}`);
     if (selectedDevice !== "null"){
-        setManifest(selectedDevice);
-        installActualButton.removeClass('invisible');
+        versionMenu.removeClass('invisible');
 
         let deviceInfo = $('#DeviceInfo');
         if (selectedDevice === 'lilygo-tdeck') {
@@ -69,19 +67,57 @@ function updateSelectionBoxVisibility() {
         }
         
     } else {
-        installActualButton.addClass('invisible');
+        versionMenu.addClass('invisible');
+    }
 
+    if (selectedVersion !== 'null') {
+        setManifest(selectedDevice, selectedVersion);
+        installActualButton.removeClass('invisible');
+    } else {
+
+        installActualButton.addClass('invisible');
     }
 }
 
 $(document).ready(function() {
     const deviceSelect = $('#device');
+    const versionSelect = $('#version');
     const installButton = document.querySelector('esp-web-install-button');
     const installActualButton = $('#installActualButton');
 
     updateSelectionBoxVisibility();
 
     deviceSelect.bind("change", function (event) {
+        versionSelect[0].value = "null"
+        const selectedDevice = deviceSelect[0].value;
+        if (selectedDevice !== 'null') {
+            $.getJSON("rom/" + selectedDevice + "/version.json")
+                .done(function(json) {
+                    console.log(json);
+                    let options = "<option value=\"null\">Select Version</option>";
+                    $('#version').html('');
+                    json.reverse().forEach(function(version) {
+                        options += "<option value=\"" + version + "\">" + version + "</option>";
+                        $('#version')
+                            .append($("<option></option>")
+                                .attr("value", version)
+                                .text(version));
+                    });
+                    updateSelectionBoxVisibility();
+                })
+                .fail(function(jqxhr, textStatus, error) {
+                    $('#version').html('');
+                    $('#version').append($("<option></option>")
+                        .attr("value", "null")
+                        .text("Failed to fetch version info"));
+                    updateSelectionBoxVisibility();
+                });
+        } else {
+            updateSelectionBoxVisibility();
+        }
+    });
+
+    versionSelect.bind("change", function (event) {
         updateSelectionBoxVisibility();
     });
 

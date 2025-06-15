@@ -22,9 +22,9 @@
 <main role="main">
     <section id="MainInstaller">
         <div class="container text-center">
-            <div class="row justify-content-md-center">
-                <div class="h4 m-2">Tactility <span id="TactilityVersion" style="display: contents;"></span></div>
-                <div class="device-selector invisible" id="device-menu">
+            <div class="row justify-content-md-center invisible" id="device-menu">
+                <div class="col-sm-2 col-form-label">Device</div>
+                <div class="col-sm-5 device-selector">
                     <select id="device" class="form-select">
                         <option value="null">Select Device</option>
                         <option value="cyd-2432s024c">CYD 2432S024C</option>
@@ -46,8 +46,18 @@
                         <option value="waveshare-s3-touch-43">Waveshare ESP32 S3 Touch LCD 4.3"</option>
                     </select>
                 </div>
-                <div class="p-4 m-4 invisible alert alert-secondary" id="DeviceInfo"></div>
             </div>
+
+            <div class="row justify-content-md-center mt-4 invisible" id="version-menu">
+                <div class="col-sm-2 col-form-label">Version</div>
+                <div class="col-sm-5 version-selector">
+                    <select id="version" class="form-select">
+                        <option value="null">Select Version</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="p-4 m-4 invisible alert alert-secondary" id="DeviceInfo"></div>
 
             <esp-web-install-button>
                 <button id="installActualButton" class="btn btn-primary" slot="activate" style="margin-top: 20pt;">
