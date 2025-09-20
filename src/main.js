@@ -62,6 +62,9 @@ function updateSelectionBoxVisibility() {
                 '2. Press the reset button and wait for reboot.<br/>' +
                 '3. Refresh this webpage and try flashing again.'
             );
+        } else if (selectedDevice === 'cyd-2432s028r') {
+            deviceInfo.removeClass('invisible');
+            deviceInfo.html('⚠️ There are 3 hardware variants and only "v1" is currently <a href="https://tactility.one/#/devices/cyd-2432S028r">supported</a> ⚠️<br/>The display will not work with v2 or v3.');
         } else {
             deviceInfo.addClass('invisible');
         }
