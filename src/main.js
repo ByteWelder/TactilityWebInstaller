@@ -46,6 +46,10 @@ function updateSelectionBoxVisibility() {
                 'Put the device into bootloader mode by pressing the center nav button and reset for 2-3 seconds, then release reset, then release the nav button.<br/>' +
                 'After flashing is finished, press the reset button to reboot.'
             );
+        } else if (selectedDevice === 'cyd-2432s024c') {
+            deviceInfo.removeClass('invisible');
+            deviceInfo.html('⚠️There currently is a known issue with the display driver.<br/>' +
+            'It will likely show artifacts.');
         } else if (selectedDevice === 'm5stack-core2') {
             deviceInfo.removeClass('invisible');
             deviceInfo.html('If you have trouble connecting to the device:<br/>' +
@@ -64,7 +68,10 @@ function updateSelectionBoxVisibility() {
             );
         } else if (selectedDevice === 'cyd-2432s028r') {
             deviceInfo.removeClass('invisible');
-            deviceInfo.html('⚠️ There are 3 hardware variants and only "v1" is currently <a href="https://tactility.one/#/devices/cyd-2432S028r">supported</a> ⚠️<br/>The display will not work with v2 or v3.');
+            deviceInfo.html('⚠️ There are 3 hardware variants of this board. This build only supports the original variant. ⚠️<br/>');
+        } else if (selectedDevice === 'cyd-2432s028rv3') {
+            deviceInfo.removeClass('invisible');
+            deviceInfo.html('⚠️ There are 3 hardware variants of this board. This build only supports the version 3. ⚠️<br/>');
         } else {
             deviceInfo.addClass('invisible');
         }
