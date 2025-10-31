@@ -11,7 +11,7 @@ Before you can build the project, make sure you:
 Continuous building with local web server:
 
 ```bash
-npm run start
+npm run start -- --port 3000
 ```
 
 Building static files into `dist/`:

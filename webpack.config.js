@@ -29,7 +29,6 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: "rom", to: "rom" },
         { from: "src/CNAME", to: "./" },
         { from: "src/.nojekyll", to: "./" }
       ],
