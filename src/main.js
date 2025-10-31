@@ -72,6 +72,9 @@ function capitalize(text) {
 }
 
 function selectVersion(version) {
+    if (version === 'unstable') {
+        version = 'snapshot';
+    }
     $.getJSON("https://cdn.tactility.one/firmware/" + version + "/index.json")
         .done(function(json) {
             let sorted_devices = json.devices.sort((a, b) => {
@@ -85,6 +88,7 @@ function selectVersion(version) {
             let improved_name = name + ' (' + json.version + ')';
             versionElement.find(":selected").text(improved_name);
             
+            $('#device').html('');
             addDevice('none', 'Select a device...', '');
             sorted_devices.forEach(function(device) {
                 let device_name = device.name;
