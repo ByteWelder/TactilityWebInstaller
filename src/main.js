@@ -9,9 +9,16 @@ import '../assets/images/favicon.svg';
 
 NavbarImage.src = toolbarLogo;
 
+function getCdnUrl(version, path) {
+    if (version === 'unstable') {
+        version = 'snapshot';
+    }
+    return `https://cdn.tactility.one/firmware/${version}/${path}`;
+}
+
 function setManifest(device, version) {
     const installer = document.querySelector('esp-web-install-button');
-    installer.manifest = `https://cdn.tactility.one/firmware/${version}/${device.id}.json`
+    installer.manifest = getCdnUrl(version, `${device.id}.json`);
     console.log("Device updated")
 }
 
@@ -72,10 +79,8 @@ function capitalize(text) {
 }
 
 function selectVersion(version) {
-    if (version === 'unstable') {
-        version = 'snapshot';
-    }
-    $.getJSON("https://cdn.tactility.one/firmware/" + version + "/index.json")
+    let url = getCdnUrl(version, 'index.json');
+    $.getJSON(url)
         .done(function(json) {
             let sorted_devices = json.devices.sort((a, b) => {
                 if (a.id < b.id) return -1;
