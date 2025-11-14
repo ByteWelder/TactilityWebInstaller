@@ -38,17 +38,17 @@ function getMessage(device) {
 }
 
 function updateSelectionBoxVisibility() {
-    const versionSelect = $('#version');
-    const versionMenu = $('#version-menu');
-    const deviceSelect = $('#device');
+    const versionSelect = $('#Version');
+    const versionMenu = $('#VersionMenu');
+    const deviceSelect = $('#Device');
     const selectedDevice = deviceSelect[0].value;
     const selectedVersion = versionSelect[0].value;
-    const installActualButton = $('#installActualButton');
+    const installActualButton = $('#InstallActualButton');
     const deviceInfo = $('#DeviceInfo');
         
     let is_device_selected = typeof(selectedDevice) !== 'undefined' && selectedDevice !== null && selectedDevice !== '' && selectedDevice !== 'none';
     if (is_device_selected) {
-        let device = JSON.parse($('#device').find('option:selected').attr('device'));
+        let device = JSON.parse($('#Device').find('option:selected').attr('device'));
         if (device.infoMessage !== null || device.warningMessage !== null || device.incubating) {
             deviceInfo.removeClass('invisible');
             deviceInfo.html(getMessage(device));
@@ -66,7 +66,7 @@ function updateSelectionBoxVisibility() {
 }
 
 function addDevice(id, name, device) {
-    $('#device').append(
+    $('#Device').append(
         $('<option></option>')
             .attr('value', id)
             .attr('device', device)
@@ -78,6 +78,11 @@ function capitalize(text) {
     return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
+function convertUTCDateToLocalDate(date) {
+    var d = new Date(Date.parse('6/29/2011 4:52:48 PM'));
+    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+}
+
 function selectVersion(version) {
     let url = getCdnUrl(version, 'index.json');
     $.getJSON(url)
@@ -87,13 +92,22 @@ function selectVersion(version) {
                 if (a.id > b.id) return 1;
                 return 0;
             });
-            const versionElement = $('#version');
+            const versionElement = $('#Version');
+            const versionDetailsElement = $('#VersionDetails');
             
             const name = capitalize(versionElement.find(":selected").val());
             let improved_name = name + ' (' + json.version + ')';
             versionElement.find(":selected").text(improved_name);
             
-            $('#device').html('');
+            if ("created" in json) {
+                const created_date = new Date(json.created).toLocaleString();
+                versionDetailsElement.html('Built on ' + created_date + ' from git commit <a href="https://github.com/ByteWelder/Tactility/commit/' +
+                json.gitCommit + '">' + json.gitCommit.substring(0, 7) + '</a>');
+            } else {
+                versionDetailsElement.html('')
+            }
+            
+            $('#Device').html('');
             addDevice('none', 'Select a device...', '');
             sorted_devices.forEach(function(device) {
                 let device_name = device.name;
@@ -106,17 +120,17 @@ function selectVersion(version) {
             updateSelectionBoxVisibility();
         })
         .fail(function(jqxhr, textStatus, error) {
-            $('#device').html('');
+            $('#Device').html('');
             addDevice('none', 'Failed to fetch device info', '');
             updateSelectionBoxVisibility();
         });
 }
 
 $(document).ready(function() {
-    const deviceSelect = $('#device');
-    const versionSelect = $('#version');
+    const deviceSelect = $('#Device');
+    const versionSelect = $('#Version');
     const installButton = document.querySelector('esp-web-install-button');
-    const installActualButton = $('#installActualButton');
+    const installActualButton = $('#InstallActualButton');
 
     updateSelectionBoxVisibility();
 
@@ -133,7 +147,7 @@ $(document).ready(function() {
         updateSelectionBoxVisibility();
     });
 
-    const deviceMenu = $("#device-menu");
+    const deviceMenu = $("#DeviceMenu");
     const isSupported = "serial" in navigator;
     if (isSupported) {
         deviceMenu.removeClass('invisible');
